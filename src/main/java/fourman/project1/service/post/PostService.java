@@ -31,18 +31,20 @@ public class PostService {
         return postRepository.findPostById(id).orElse(null);
     }
 
-    public Post createPost(PostRequestDto postRequestDto) {
+    public Post createPost(Post post) {
 //        Post post = new Post();
 //        post.setTitle(postRequestDto.getTitle());
 //        post.setBody(postRequestDto.getBody());
-        return postRepository.createPost(postRequestDto);
+        return postRepository.createPost(post);
     }
 
     public Post updatePost(Post post) {
         Post findPost = postRepository.findPostById(post.getPostId()).orElse(null);
 
-        Optional.ofNullable(findPost.getTitle()).ifPresent(title -> post.setTitle(title));
-        Optional.ofNullable(findPost.getBody()).ifPresent(body -> post.setBody(body));
+        if (findPost != null) {
+            Optional.ofNullable(findPost.getTitle()).ifPresent(title -> findPost.setTitle(title));
+            Optional.ofNullable(findPost.getBody()).ifPresent(body -> findPost.setBody(body));
+        }
 
         return postRepository.updatePost(findPost);
     }

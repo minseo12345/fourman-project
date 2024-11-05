@@ -1,7 +1,9 @@
 package fourman.project1.controller.post;
 
 import fourman.project1.domain.post.Post;
+import fourman.project1.domain.post.PostMapper;
 import fourman.project1.domain.post.PostRequestDto;
+import fourman.project1.domain.post.PostResponseDto;
 import fourman.project1.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,9 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class PostController {
+
     private final PostService postService;
+    private final PostMapper postMapper;
 
     @GetMapping
     public String findPosts(Model model) {
@@ -30,22 +34,29 @@ public class PostController {
         return "";
     }
 
-    @GetMapping
+    @GetMapping("/create")
     public String createPost(Model model) {
         return "";
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public String createPost(@ModelAttribute PostRequestDto postRequestDto, Model model, RedirectAttributes redirectAttributes) {
-        Post newPost = postService.createPost(postRequestDto);
-//        model.addAttribute("post", newPost);
-//        redirectAttributes.addAttribute("post", newPost);
+        Post newPost = postService.createPost(postMapper.postRequestDtoToPost(postRequestDto));
+        PostResponseDto postResponseDto = postMapper.postToPostResponseDto(newPost);
+//        model.addAttribute("post", postResponseDto);
+//        redirectAttributes.addAttribute("post", postResponseDto);
         return "redirect:/";
     }
 
-    @PatchMapping
-    public String updatePost(@ModelAttribute Post post, Model model) {
+    @PatchMapping("postId")
+    public String updatePost(@PathVariable Long postId, @ModelAttribute PostRequestDto postRequestDto, Model model) {
+        Post post = postMapper.postRequestDtoToPost(postRequestDto);
+        post.setPostId(postId);
+
         Post updatePost = postService.updatePost(post);
+        PostResponseDto postResponseDto = postMapper.postToPostResponseDto(updatePost);
+
+        model.addAttribute("post", postResponseDto);
         return "";
     }
 

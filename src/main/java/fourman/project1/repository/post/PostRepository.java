@@ -1,7 +1,6 @@
 package fourman.project1.repository.post;
 
 import fourman.project1.domain.post.Post;
-import fourman.project1.domain.post.PostRequestDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class PostRepository {
         return null;
     }
 
-    public Post createPost(PostRequestDto postRequestDto) {
+    public Post createPost(Post post) {
         return null;
     }
 
