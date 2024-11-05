@@ -14,4 +14,3 @@ public class Board {
     private List<Post> posts;
 }
 
-
