@@ -10,7 +10,9 @@ public interface BoardRepository {
 
     Optional<Board> findBoardById(Long boardId); // 1건 조회
 
-    Board saveBoard(Board board); // 저장 or 수정 (나눠서 메서드를 )
+    Board saveBoard(Board board); // 저장
+
+    Board updateBoard(Board board); // 수정
 
     void deleteBoard(Board board); // 1건 삭제
 }

@@ -40,11 +40,11 @@ public class BoardController {
    }
 
    @PostMapping
-    public String createBoard(BoardRequestDto boardRequestDto, BoardResponseDto boardResponseDto, Model model) {
+    public String createBoard(@ModelAttribute BoardRequestDto boardRequestDto) {
        Board board = boardMapper.boardRequestDtoToBoard(boardRequestDto);
        Board newBoard = boardService.createBoard(board);
-       boardMapper.boardToBoardResponseDto(newBoard);
-
+       BoardResponseDto boardResponseDto = boardMapper.boardToBoardResponseDto(newBoard);
+       
        return "redirect:/boards";
    }
 

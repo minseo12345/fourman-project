@@ -28,6 +28,11 @@ public class BoardJdbcTemplateRepository implements BoardRepository {
     }
 
     @Override
+    public Board updateBoard(Board board) {
+        return null;
+    }
+
+    @Override
     public void deleteBoard(Board board) {
 
     }

@@ -33,7 +33,7 @@ public class BoardService {
         Optional.ofNullable(board.getBoardname())
                 .ifPresent(boardname -> findBoard.setBoardname(boardname));
 
-        return boardRepository.saveBoard(findBoard);
+        return boardRepository.updateBoard(findBoard);
     }
 
     public void deleteBoard(Long boardId) {
