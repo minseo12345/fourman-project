@@ -34,9 +34,9 @@ out/
 .env.test
 
 # env config files
-# application.yaml
-# application.yml
-# application.properties
+ application.yaml
+ application.yml
+ application.properties
 
 
 ### NetBeans ###
