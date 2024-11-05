@@ -10,7 +10,6 @@ public class Board {
     private Long boardId;
 
     private String boardname;
-    private String board;
 
     private List<Post> posts;
 }
