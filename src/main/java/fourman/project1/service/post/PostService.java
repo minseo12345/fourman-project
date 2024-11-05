@@ -42,8 +42,8 @@ public class PostService {
         Post findPost = postRepository.findPostById(post.getPostId()).orElse(null);
 
         if (findPost != null) {
-            Optional.ofNullable(findPost.getTitle()).ifPresent(title -> findPost.setTitle(title));
-            Optional.ofNullable(findPost.getBody()).ifPresent(body -> findPost.setBody(body));
+            Optional.ofNullable(post.getTitle()).ifPresent(title -> findPost.setTitle(title));
+            Optional.ofNullable(post.getBody()).ifPresent(body -> findPost.setBody(body));
         }
 
         return postRepository.updatePost(findPost);
