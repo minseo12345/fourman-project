@@ -50,14 +50,14 @@ public class BoardController {
        return "redirect:/boards";
    }
 
-   @GetMapping("/{boardId}")
+   @GetMapping("/{boardId}/edit")
     public String updateBoard(@PathVariable Long boardId, Model model) {
        Board board = boardService.findBoardById(boardId);
        model.addAttribute("board", board);
        return "";
    }
 
-   @PatchMapping("/{boardId}")
+   @PatchMapping("/{boardId}/edit")
     public String updateBoard(@PathVariable Long boardId, Board board, Model model) {
        board.setBoardId(boardId);
        Board updatedBoard = boardService.updateBoard(board);
