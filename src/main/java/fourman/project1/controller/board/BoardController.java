@@ -6,6 +6,7 @@ import fourman.project1.domain.board.BoardResponseDto;
 import fourman.project1.mapper.board.BoardMapper;
 import fourman.project1.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequestMapping("/boards")
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class BoardController {
@@ -31,6 +33,7 @@ public class BoardController {
     public String findBoardById(@PathVariable Long boardId, Model model) {
        Board findBoard = boardService.findBoardById(boardId);
        model.addAttribute("board", findBoard);
+       log.info("############# {}", boardId);
        return "";
    }
 

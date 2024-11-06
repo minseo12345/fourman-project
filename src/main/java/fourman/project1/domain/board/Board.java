@@ -12,11 +12,8 @@ import java.util.List;
 @Setter
 @Builder
 public class Board {
-
     private Long boardId;
-
     private String boardname;
-
     private List<Post> posts;
 }
 
