@@ -1,4 +1,4 @@
-package fourman.project1.repository;
+package fourman.project1.repository.board;
 
 import fourman.project1.domain.board.Board;
 

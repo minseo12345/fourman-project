@@ -1,7 +1,7 @@
-package fourman.project1.service;
+package fourman.project1.service.board;
 
 import fourman.project1.domain.board.Board;
-import fourman.project1.repository.BoardRepository;
+import fourman.project1.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

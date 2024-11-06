@@ -1,4 +1,4 @@
-package fourman.project1.mapper;
+package fourman.project1.mapper.board;
 
 import fourman.project1.domain.board.Board;
 import fourman.project1.domain.board.BoardRequestDto;

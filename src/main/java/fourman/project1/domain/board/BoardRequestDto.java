@@ -11,11 +11,7 @@ import java.util.List;
 @Setter
 //@Builder
 public class BoardRequestDto {
-
     //private Long boardId;
-
     private String boardname;
-
     private List<Post> posts;
-
 }
