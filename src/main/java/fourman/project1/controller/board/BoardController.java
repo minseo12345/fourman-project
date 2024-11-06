@@ -33,7 +33,6 @@ public class BoardController {
     public String findBoardById(@PathVariable Long boardId, Model model) {
        Board findBoard = boardService.findBoardById(boardId);
        model.addAttribute("board", findBoard);
-       log.info("############# {}", boardId);
        return "";
    }
 
@@ -46,12 +45,13 @@ public class BoardController {
    @PostMapping("/create")
     public String createBoard(@ModelAttribute BoardRequestDto boardRequestDto, Model model) {
        Board board = boardMapper.boardRequestDtoToBoard(boardRequestDto);
-       Board newBoard = boardService.createBoard(board);
+       boardService.createBoard(board);
+       Board newBoard = boardService.findBoardById(board.getBoardId());
        BoardResponseDto boardResponseDto = boardMapper.boardToBoardResponseDto(newBoard);
        model.addAttribute("board", boardResponseDto);
-
        return "redirect:/boards";
    }
+
 
    @GetMapping("/{boardId}/edit")
     public String updateBoard(@PathVariable Long boardId, Model model) {
@@ -61,10 +61,13 @@ public class BoardController {
    }
 
    @PatchMapping("/{boardId}/edit")
-    public String updateBoard(@PathVariable Long boardId, Board board, Model model) {
+    public String updateBoard(@PathVariable Long boardId, @ModelAttribute BoardRequestDto boardRequestDto, Model model) {
+       Board board = boardMapper.boardRequestDtoToBoard(boardRequestDto);
        board.setBoardId(boardId);
-       Board updatedBoard = boardService.updateBoard(board);
-       model.addAttribute("board", updatedBoard);
+       boardService.updateBoard(board);
+       Board updatedBoard = boardService.findBoardById(boardId);
+       BoardResponseDto boardResponseDto = boardMapper.boardToBoardResponseDto(updatedBoard);
+       model.addAttribute("board", boardResponseDto);
 
        return "redirect:/boards/" + boardId;
    }

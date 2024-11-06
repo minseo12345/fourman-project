@@ -12,9 +12,9 @@ public interface BoardMyBatisMapper {
 
     Optional<Board> findBoardById(Long boardId); // 1건 조회
 
-    Board createBoard(Board board); // 저장
+    void createBoard(Board board); // 저장
 
-    Board updateBoard(Board board); // 수정
+    void updateBoard(Board board); // 수정
 
     void deleteBoard(Board board); // 1건 삭제
 }

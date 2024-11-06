@@ -22,18 +22,19 @@ public class BoardService {
         return boardMyBatisMapper.findBoardById(boardId).orElse(null);
     }
 
-    public Board createBoard(Board board) {
-        return boardMyBatisMapper.createBoard(board);
+    public void createBoard(Board board) {
+        boardMyBatisMapper.createBoard(board);
+        boardMyBatisMapper.findBoardById(board.getBoardId()).orElse(null);
     }
 
-    public Board updateBoard(Board board) {
+    public void updateBoard(Board board) {
         Board findBoard = boardMyBatisMapper.findBoardById(board.getBoardId())
                 .orElse(null);
 
         Optional.ofNullable(board.getBoardname())
                 .ifPresent(boardname -> findBoard.setBoardname(boardname));
 
-        return boardMyBatisMapper.updateBoard(findBoard);
+        boardMyBatisMapper.updateBoard(findBoard);
     }
 
     public void deleteBoard(Long boardId) {
