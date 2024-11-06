@@ -40,7 +40,7 @@ public class PostController {
 //        }
 
         model.addAttribute("posts", posts);
-        return "";
+        return "main-service";
     }
 
     @GetMapping("/{postId}")
@@ -51,12 +51,12 @@ public class PostController {
         log.info("findPostById() findPost={}, {}", post.getTitle(), post.getBody());
 
         model.addAttribute("post", post);
-        return "";
+        return "detailed-service";
     }
 
     @GetMapping("/create")
     public String createPost(Model model) {
-        return "";
+        return "create-service";
     }
 
     @PostMapping("/create")
@@ -81,7 +81,7 @@ public class PostController {
 
 //        model.addAttribute("post", postResponseDto);
 //        redirectAttributes.addAttribute("post", postResponseDto);
-        return "redirect:/";
+        return "redirect:/posts";
     }
 
     @PatchMapping("/{postId}")
