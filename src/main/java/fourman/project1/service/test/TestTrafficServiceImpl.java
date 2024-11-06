@@ -1,6 +1,7 @@
 package fourman.project1.service.test;
 
 import fourman.project1.domain.test.Test;
+import fourman.project1.exception.test.TestTrafficErrorException;
 import fourman.project1.repository.test.TestTrafficMyBatisMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class TestTrafficServiceImpl implements TestTrafficService{
 
         try {
             ProcessBuilder pb = new ProcessBuilder(
-                "k6", "run", "--vus", String.valueOf(test.getVus()),
+                    "k6", "run", "--vus", String.valueOf(test.getVus()),
                     "duration", String.valueOf(test.getDuration()),
                     "--env", "TARGET_URL=" + test.getUrl(),
                     SCRIPT_URL
@@ -28,6 +29,7 @@ public class TestTrafficServiceImpl implements TestTrafficService{
             return testTrafficMyBatisMapper.createTestTraffic(test);
         } catch(RuntimeException e) {
             log.error("createTestTraffic", e);
+            throw new TestTrafficErrorException();
         }
     }
 }
