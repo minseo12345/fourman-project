@@ -8,7 +8,7 @@ public class TestRequestDto {
 
     private String url;
 
-    private Long trafficRequest;
+    private String vus;
 
-    private Long trafficDuration;
+    private String duration;
 }

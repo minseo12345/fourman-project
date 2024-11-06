@@ -6,9 +6,9 @@ import lombok.Setter;
 @Getter @Setter
 public class TestResponseDto {
 
-    private Long trafficRequest;
+    private Long vus;
 
-    private Long trafficDuration;
+    private String duration;
 
-    private Long rps;
+    private String rps;
 }

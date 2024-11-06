@@ -21,8 +21,8 @@ public class TestTrafficServiceImpl implements TestTrafficService{
 
         try {
             ProcessBuilder pb = new ProcessBuilder(
-                    "k6", "run", "--vus", String.valueOf(test.getVus()),
-                    "duration", String.valueOf(test.getDuration()),
+                    "k6", "run", "--vus", test.getVus(),
+                    "duration", test.getDuration(),
                     "--env", "TARGET_URL=" + test.getUrl(),
                     SCRIPT_URL
             );

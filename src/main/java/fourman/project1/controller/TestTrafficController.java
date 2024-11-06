@@ -6,6 +6,8 @@ import fourman.project1.service.test.TestTrafficService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,6 +18,12 @@ public class TestTrafficController {
     private final TestMapper testMapper;
     private final TestTrafficService testTrafficService;
 
+    @GetMapping
+    public String refreshTestTraffic() {
+        return "test";
+    }
+
+    @PostMapping
     public String createTestTraffic(
             TestRequestDto testRequestDto,
             Model model) {
@@ -25,6 +33,6 @@ public class TestTrafficController {
                 testTrafficService.createTestTraffic(testMapper.testRequestDtoToTest(testRequestDto))
         );
 
-        return "";
+        return "redirect:/test";
     }
 }

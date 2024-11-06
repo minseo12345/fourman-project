@@ -1,5 +1,6 @@
 package fourman.project1.domain.test;
 
+import fourman.project1.domain.post.Post;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +11,11 @@ public class Test {
 
     private String url;
 
-    private Long vus;
+    private String vus;
 
-    private Long duration;
+    private String duration;
 
     private Long rps;
+
+    private Post post;
 }
