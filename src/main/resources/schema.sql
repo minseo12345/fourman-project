@@ -30,12 +30,13 @@ CREATE TABLE IF NOT EXISTS posts (
         FOREIGN KEY (board_id) REFERENCES boards(board_id) ON DELETE SET NULL
 );
 
-CREATE TABLE IF NOT EXISTS tests (
+DROP TABLE IF EXISTS tests;
+CREATE TABLE tests (
 
         test_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
         url        VARCHAR(200) NOT NULL,
         vus        BIGINT       NOT NULL,
-        duration   BIGINT       NOT NULL,
+        duration   VARCHAR(20)  NOT NULL,
         rps        BIGINT,
         post_id    BIGINT,
         FOREIGN KEY (post_id) REFERENCES posts (post_id) ON DELETE SET NULL

@@ -1,15 +1,16 @@
 package fourman.project1.controller;
 
+import fourman.project1.domain.test.Test;
 import fourman.project1.domain.test.TestMapper;
 import fourman.project1.domain.test.TestRequestDto;
 import fourman.project1.service.test.TestTrafficService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequestMapping("/test")
 @RequiredArgsConstructor
@@ -25,12 +26,19 @@ public class TestTrafficController {
 
     @PostMapping
     public String createTestTraffic(
-            TestRequestDto testRequestDto,
+            @ModelAttribute TestRequestDto testRequestDto,
             Model model) {
 
+//        log.info("testRequestDto url:{}", testRequestDto.getUrl());
+//        log.info("testRequestDto vus: {}", testRequestDto.getVus());
+//        log.info("testRequestDto duration: {}", testRequestDto.getDuration());
+
+        // testTrafficService.createTestTraffic(testMapper.testRequestDtoToTest(testRequestDto));
+        testTrafficService.createTestTraffic(Test.of(
+                testRequestDto.getUrl(),testRequestDto.getVus(),testRequestDto.getDuration()));
+
         model.addAttribute(
-                "test",
-                testTrafficService.createTestTraffic(testMapper.testRequestDtoToTest(testRequestDto))
+                "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)
         );
 
         return "redirect:/test";

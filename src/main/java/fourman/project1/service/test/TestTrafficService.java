@@ -4,5 +4,5 @@ import fourman.project1.domain.test.Test;
 
 public interface TestTrafficService {
 
-    Test createTestTraffic(Test test);
+    void createTestTraffic(Test test);
 }

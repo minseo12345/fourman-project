@@ -7,5 +7,5 @@ public interface TestMapper {
 
     Test testRequestDtoToTest(TestRequestDto testRequestDto);
 
-    TestResponseDto testToTestResponseDto(Test test);
+    TestResponseDto testRequestDtoToTestResponseDto(TestRequestDto testRequestDto);
 }

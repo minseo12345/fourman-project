@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fourman.project1.repository.test.TestTrafficMyBatisMapper">
+
+    <insert id="createTestTraffic"
+            parameterType="fourman.project1.domain.test.Test"
+            keyProperty="testId" keyColumn="test_id"
+            useGeneratedKeys="true">
+
+        INSERT INTO tests (url, vus, duration, rps, post_id)
+        VALUES (#{url}, #{vus}, #{duration}, #{rps}, #{post.postId});
+    </insert>
+
+</mapper>

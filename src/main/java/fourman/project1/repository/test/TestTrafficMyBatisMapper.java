@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TestTrafficMyBatisMapper {
 
-    Test createTestTraffic(Test test);
+    void createTestTraffic(Test test);
 }

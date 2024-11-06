@@ -1,14 +1,16 @@
 package fourman.project1.domain.test;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
+@NoArgsConstructor
 public class TestResponseDto {
 
-    private Long vus;
+    private int vus;
 
     private String duration;
 
-    private String rps;
+    private int rps;
 }

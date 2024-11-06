@@ -9,4 +9,8 @@ public class TestTrafficErrorException extends RuntimeException{
     public TestTrafficErrorException(String message) {
         super(message);
     }
+
+    public TestTrafficErrorException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
