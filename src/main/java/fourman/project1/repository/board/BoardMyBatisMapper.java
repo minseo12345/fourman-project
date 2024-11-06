@@ -16,5 +16,5 @@ public interface BoardMyBatisMapper {
 
     void updateBoard(Board board); // 수정
 
-    void deleteBoard(Board board); // 1건 삭제
+    void deleteBoard(Long boardId); // 1건 삭제
 }

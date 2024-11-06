@@ -1,7 +1,7 @@
 package fourman.project1.service.board;
 
 import fourman.project1.domain.board.Board;
-import fourman.project1.repository.board.BoardMyBatisMapper;
+import fourman.project1.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,35 +12,33 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-    @Autowired private final BoardMyBatisMapper boardMyBatisMapper;
+    @Autowired private final BoardRepository boardRepository;
 
     public List<Board> findBoards() {
-        return boardMyBatisMapper.findBoards();
+        return boardRepository.findBoards();
     }
 
     public Board findBoardById(Long boardId) {
-        return boardMyBatisMapper.findBoardById(boardId).orElse(null);
+        return boardRepository.findBoardById(boardId).orElse(null);
     }
 
     public void createBoard(Board board) {
-        boardMyBatisMapper.createBoard(board);
-        boardMyBatisMapper.findBoardById(board.getBoardId()).orElse(null);
+        boardRepository.createBoard(board);
+        boardRepository.findBoardById(board.getBoardId()).orElse(null);
     }
 
     public void updateBoard(Board board) {
-        Board findBoard = boardMyBatisMapper.findBoardById(board.getBoardId())
+        Board findBoard = boardRepository.findBoardById(board.getBoardId())
                 .orElse(null);
 
         Optional.ofNullable(board.getBoardname())
                 .ifPresent(boardname -> findBoard.setBoardname(boardname));
 
-        boardMyBatisMapper.updateBoard(findBoard);
+        boardRepository.updateBoard(findBoard);
     }
 
     public void deleteBoard(Long boardId) {
-        Board board = boardMyBatisMapper.findBoardById(boardId)
-                .orElse(null);
 
-        boardMyBatisMapper.deleteBoard(board);
+        boardRepository.deleteBoard(boardId);
     }
 }
