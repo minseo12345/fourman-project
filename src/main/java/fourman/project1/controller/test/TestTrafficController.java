@@ -1,4 +1,4 @@
-package fourman.project1.controller;
+package fourman.project1.controller.test;
 
 import fourman.project1.domain.test.Test;
 import fourman.project1.domain.test.TestMapper;

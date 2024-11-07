@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: head}"></head>
+<body>
+
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main>
+    <div>
+        <section class="container-fluid w-100 border border-light">
+            <div class="row justify-content-around align-items-center">
+                <div class="col">
+                    <img alt="avatar" class="rounded-circle" width="100" height="100" src="/logo.png">
+                </div>
+                <div class="col-8">
+                    <div class="container-lg">
+                        <h1>Smith Shin</h1>
+                        <label class="">Admin</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn btn-dark" type="button" th:onclick="|location.href='@{/posts/create}'|">
+                        Create New Post
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="m-4 row justify-content-center">
+                <h1>Latest Live Posts</h1>
+            </div>
+            <div class="row row-cols-1 justify-content-center">
+
+                <!-- 카드 -->
+                <div th:each="post : ${posts}">
+                    <a th:href="@{/posts/{postId}(postId=${post.postId})}">
+                        <div class="col mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <img src="/logo.png" class="col-auto" width="32" height="32" alt="">
+                                        <p th:text="${post.title}" class="col">앨리스</p>
+                                        <button class="col-auto ui-icon"></button>
+                                    </div>
+                                </div>
+                                <img src="/logo.png" class="card-img-top" alt="image">
+                                <div class="card-body">
+                                    <h5 th:text="${post.body}" class="card-title">선착순 등록 맥북 증정</h5>
+                                    <p class="">#Social</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

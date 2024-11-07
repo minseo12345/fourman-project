@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS boards (
         boardname VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS posts (
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts (
 
         post_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
         title      VARCHAR(30) NOT NULL,

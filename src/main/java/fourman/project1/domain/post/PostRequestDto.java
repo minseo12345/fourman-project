@@ -1,7 +1,7 @@
 package fourman.project1.domain.post;
 
-import fourman.project1.domain.user.User;
 import fourman.project1.domain.board.Board;
+import fourman.project1.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,21 +13,20 @@ import java.time.ZonedDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
-
-    private Long postId;
+public class PostRequestDto {
+//    private Long postId;
 
     private String title;
 
     private String body;
 
-    private User user;
+    private Long userId;
 
-    private Board board;
+    private Long boardId;
 
-    private ZonedDateTime createdAt;
-
-    private ZonedDateTime updatedAt;
-
-    private ZonedDateTime deletedAt;
+//    private ZonedDateTime createdAt;
+//
+//    private ZonedDateTime updatedAt;
+//
+//    private ZonedDateTime deletedAt;
 }
