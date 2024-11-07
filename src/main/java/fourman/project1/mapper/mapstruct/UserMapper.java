@@ -16,9 +16,9 @@ public interface UserMapper {
     @Mapping(target = "deletedAt", ignore = true)
     User toEntity(UserSignUpRequestDto userSignUpRequestDto);
 
-    UserSignUpRequestDto toDto(User user);
-
-    CustomUserDetails toCustomUserDetails(User user);
-    User toEntity(CustomUserDetails customUserDetails);
+//    UserSignUpRequestDto toDto(User user);
+//
+//    CustomUserDetails toCustomUserDetails(User user);
+//    User toEntity(CustomUserDetails customUserDetails);
 
 }
