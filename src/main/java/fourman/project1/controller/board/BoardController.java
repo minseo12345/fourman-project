@@ -27,7 +27,7 @@ public class BoardController {
        List<Board> boards = boardService.findBoards();
        model.addAttribute("boards", boards);
        log.info("findBoards {}", boards.size());
-       return "";
+       return "main-test";
    }
 
    @GetMapping("/{boardId}")
