@@ -3,6 +3,7 @@ package fourman.project1.controller.traffic;
 import fourman.project1.domain.traffic.Traffic;
 import fourman.project1.domain.traffic.TrafficMapper;
 import fourman.project1.domain.traffic.TrafficRequestDto;
+import fourman.project1.domain.traffic.TrafficResponseDto;
 import fourman.project1.service.traffic.TrafficService;
 import jakarta.annotation.Priority;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -22,7 +25,10 @@ public class TrafficController {
 
     @GetMapping
     public String findTraffics(Model model) {
-        model.addAttribute("traffics", trafficService.findTraffics());
+        List<TrafficResponseDto> traffics = trafficService.findTraffics().stream()
+                                                .map(trafficMapper::trafficToTrafficResponseDto)
+                                                .toList();
+        model.addAttribute("traffics", traffics);
         return "";
     }
 
