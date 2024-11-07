@@ -34,12 +34,16 @@ public class TrafficServiceImpl implements TrafficService {
     @Override
     public void createTraffic(Traffic traffic) {
         traffic.setDuration(traffic.getDuration() + "s");
-        log.info("traffic duration: {}", traffic.getDuration());
         trafficMyBatisMapper.createTraffic(traffic);
 
         String LOCAL_HOST_URL = "http://localhost:8080";
-        traffic.setUrl(LOCAL_HOST_URL + "/traffics/" + traffic.getTrafficId());
+        Long trafficId = traffic.getTrafficId();
+        String trafficUrl = LOCAL_HOST_URL + "/traffics/" + trafficId;
 
+        traffic.setUrl(trafficUrl);
+        trafficMyBatisMapper.setTrafficUrl(trafficUrl, trafficId);
+
+        log.info("traffic url: {}", trafficUrl);
         String SCRIPT_PATH = "/Users/zun/Lecture/Elice/Cloud/project1/k6/script.js";
 
         try {

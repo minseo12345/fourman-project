@@ -31,6 +31,10 @@
             #{createdAt}, #{updatedAt}, #{deletedAt});
     </insert>
 
+    <update id="setTrafficUrl">
+        UPDATE traffics SET url = #{url} WHERE traffic_id = #{id}
+    </update>
+
     <delete id="forceDeleteTrafficDueToError">
         DELETE FROM traffics WHERE traffic_id = #{trafficId}
     </delete>
