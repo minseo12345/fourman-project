@@ -69,33 +69,25 @@ public class PostController {
     public String createPost(@ModelAttribute PostRequestDto postRequestDto,
                              @ModelAttribute TestRequestDto testRequestDto,
                              Model model, RedirectAttributes redirectAttributes) {
-//        log.info("createPost() {}, {}, {}, {}", postRequestDto.getTitle(), postRequestDto.getBody(), postRequestDto.getUserId(), postRequestDto.getBoardId());
 
-        // User 찾기
-        User findUser = new User();//        userService.findByUserId();
-        // Board 찾기
+        // User와 Board 찾기
+        User findUser = new User(); // userService.findByUserId();
         Board findBoard = new Board(); // boardService.findByBoardId();
 
+        // Post 생성 및 설정
         Post post = Post.from(postRequestDto);
-        log.info("post title: {}", post.getTitle());
-
         post.setUser(findUser);
         post.setBoard(findBoard);
 
-        // 유저 생성
+        // Test 생성 및 ID 가져오기
+        Test test = Test.from(testRequestDto);
+        testTrafficService.createTestTraffic(test);
+        post.setTest(test);
+
+        // post 생성 및 응답 매핑
         postService.createPost(post);
-
-        // PostResponseDto 로 매핑
         PostResponseDto postResponseDto = postMapper.postToPostResponseDto(post);
-        log.info("createPost() postResponseDto ={} , {}, {}", post.getPostId(), post.getTitle(), post.getCreatedAt());
 
-        testTrafficService.createTestTraffic(Test.from(testRequestDto));
-        model.addAttribute(
-                "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)
-        );
-
-//        model.addAttribute("post", postResponseDto);
-//        redirectAttributes.addAttribute("post", postResponseDto);
         return "redirect:/posts";
     }
 
