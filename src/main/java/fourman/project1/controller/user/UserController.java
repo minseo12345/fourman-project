@@ -1,11 +1,11 @@
 package fourman.project1.controller.user;
-import fourman.project1.mapper.mapstruct.UserMapper;
+import fourman.project1.domain.user.UserMapper;
 
 import org.springframework.ui.Model;
 
 import fourman.project1.domain.user.User;
-import fourman.project1.dto.user.CheckUsernameRequestDto;
-import fourman.project1.dto.user.UserSignUpRequestDto;
+import fourman.project1.domain.user.CheckUsernameRequestDto;
+import fourman.project1.domain.user.UserSignUpRequestDto;
 import fourman.project1.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

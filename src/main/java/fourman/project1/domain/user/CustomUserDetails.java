@@ -1,6 +1,5 @@
-package fourman.project1.dto.user;
+package fourman.project1.domain.user;
 
-import fourman.project1.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+// 도메인으로 이동
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 

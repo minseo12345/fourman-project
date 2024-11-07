@@ -1,4 +1,4 @@
-package fourman.project1.domain.test;
+package fourman.project1.domain.traffic;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor
-public class TestResponseDto {
+public class TrafficResponseDto {
 
     private int vus;
 

@@ -11,7 +11,7 @@
     @RequiredArgsConstructor
     public class UserRepository {
 
-        private final UserMybatisMapper userMybatisMapper;
+        private final UserMyBatisMapper userMybatisMapper;
 
         @Transactional
         public void save(User user) {

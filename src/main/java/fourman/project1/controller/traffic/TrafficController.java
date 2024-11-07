@@ -1,9 +1,9 @@
-package fourman.project1.controller.test;
+package fourman.project1.controller.traffic;
 
-import fourman.project1.domain.test.Test;
-import fourman.project1.domain.test.TestMapper;
-import fourman.project1.domain.test.TestRequestDto;
-import fourman.project1.service.test.TestTrafficService;
+import fourman.project1.domain.traffic.Traffic;
+import fourman.project1.domain.traffic.TrafficMapper;
+import fourman.project1.domain.traffic.TrafficRequestDto;
+import fourman.project1.service.traffic.TrafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/test")
 @RequiredArgsConstructor
-public class TestTrafficController {
+public class TrafficController {
 
-    private final TestMapper testMapper;
-    private final TestTrafficService testTrafficService;
+    private final TrafficMapper testMapper;
+    private final TrafficService testTrafficService;
 
     @GetMapping
     public String refreshTestTraffic() {
@@ -26,10 +26,10 @@ public class TestTrafficController {
 
     @PostMapping
     public String createTestTraffic(
-            @ModelAttribute TestRequestDto testRequestDto,
+            @ModelAttribute TrafficRequestDto testRequestDto,
             Model model) {
 
-        testTrafficService.createTestTraffic(Test.from(testRequestDto));
+        testTrafficService.createTestTraffic(Traffic.from(testRequestDto));
         model.addAttribute(
                 "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)
         );

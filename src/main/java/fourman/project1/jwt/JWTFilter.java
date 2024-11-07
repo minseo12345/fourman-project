@@ -1,7 +1,7 @@
 package fourman.project1.jwt;
 
 import fourman.project1.domain.user.User;
-import fourman.project1.dto.user.CustomUserDetails;
+import fourman.project1.domain.user.CustomUserDetails;
 import fourman.project1.repository.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,8 +1,8 @@
-package fourman.project1.service.test;
+package fourman.project1.service.traffic;
 
-import fourman.project1.domain.test.Test;
-import fourman.project1.exception.test.TestTrafficErrorException;
-import fourman.project1.repository.test.TestTrafficMyBatisMapper;
+import fourman.project1.domain.traffic.Traffic;
+import fourman.project1.exception.traffic.TrafficErrorException;
+import fourman.project1.repository.traffic.TrafficMyBatisMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ import java.io.InputStreamReader;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TestTrafficServiceImpl implements TestTrafficService{
+public class TestTrafficServiceImpl implements TrafficService {
 
-    private final TestTrafficMyBatisMapper testTrafficMyBatisMapper;
+    private final TrafficMyBatisMapper testTrafficMyBatisMapper;
 
     @Override
-    public void createTestTraffic(Test test) {
+    public void createTestTraffic(Traffic test) {
 
         String SCRIPT_PATH = "/Users/zun/Lecture/Elice/Cloud/project1/k6/script.js";
 
@@ -43,13 +43,13 @@ public class TestTrafficServiceImpl implements TestTrafficService{
 
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                throw new TestTrafficErrorException("k6 command failed with exit code: " + exitCode);
+                throw new TrafficErrorException("k6 command failed with exit code: " + exitCode);
             }
 
             testTrafficMyBatisMapper.createTestTraffic(test);
         } catch (IOException | InterruptedException e) {
             log.error("Error executing k6 command", e);
-            throw new TestTrafficErrorException("k6 command execution failed", e);
+            throw new TrafficErrorException("k6 command execution failed", e);
         }
     }
 }

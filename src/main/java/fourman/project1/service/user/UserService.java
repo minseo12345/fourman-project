@@ -1,14 +1,12 @@
 package fourman.project1.service.user;
 
 import fourman.project1.domain.user.User;
-import fourman.project1.dto.user.CustomUserDetails;
 import fourman.project1.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

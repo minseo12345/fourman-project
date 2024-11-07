@@ -1,6 +1,6 @@
 package fourman.project1.jwt;
 
-import fourman.project1.dto.user.CustomUserDetails;
+import fourman.project1.domain.user.CustomUserDetails;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

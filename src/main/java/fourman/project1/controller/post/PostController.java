@@ -5,12 +5,12 @@ import fourman.project1.domain.post.Post;
 import fourman.project1.domain.post.PostMapper;
 import fourman.project1.domain.post.PostRequestDto;
 import fourman.project1.domain.post.PostResponseDto;
-import fourman.project1.domain.test.Test;
-import fourman.project1.domain.test.TestMapper;
-import fourman.project1.domain.test.TestRequestDto;
+import fourman.project1.domain.traffic.Traffic;
+import fourman.project1.domain.traffic.TrafficMapper;
+import fourman.project1.domain.traffic.TrafficRequestDto;
 import fourman.project1.domain.user.User;
 import fourman.project1.service.post.PostService;
-import fourman.project1.service.test.TestTrafficService;
+import fourman.project1.service.traffic.TrafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -28,8 +28,8 @@ public class PostController {
 
     private final PostService postService;
     private final PostMapper postMapper;
-    private final TestTrafficService testTrafficService;
-    private final TestMapper testMapper;
+    private final TrafficService testTrafficService;
+    private final TrafficMapper testMapper;
 
     @GetMapping
     public String findPosts(Model model) {
@@ -37,13 +37,6 @@ public class PostController {
         List<Post> posts = postService.findPosts();
 
         log.info("find posts.size() ={}", posts.size());
-//        for (int i = 0; i < posts.size(); i++) {
-//            log.info("--------");
-//            log.info("id ={}", posts.get(i).getPostId());
-//            log.info("title ={}",posts.get(i).getTitle());
-//            log.info("body ={}",posts.get(i).getBody());
-//            log.info("--------");
-//        }
 
         model.addAttribute("posts", posts);
         return "main-service";
@@ -67,24 +60,24 @@ public class PostController {
 
     @PostMapping("/create")
     public String createPost(@ModelAttribute PostRequestDto postRequestDto,
-                             @ModelAttribute TestRequestDto testRequestDto,
+                             @ModelAttribute TrafficRequestDto testRequestDto,
                              Model model, RedirectAttributes redirectAttributes) {
 
         // User와 Board 찾기
         User findUser = new User(); // userService.findByUserId();
         Board findBoard = new Board(); // boardService.findByBoardId();
 
-        // Post 생성 및 설정
+        // Post 생성 및 할당
         Post post = Post.from(postRequestDto);
         post.setUser(findUser);
         post.setBoard(findBoard);
 
-        // Test 생성 및 ID 가져오기
-        Test test = Test.from(testRequestDto);
+        // Test 생성 및 할당
+        Traffic test = Traffic.from(testRequestDto);
         testTrafficService.createTestTraffic(test);
         post.setTest(test);
 
-        // post 생성 및 응답 매핑
+        // post 저장 및 응답
         postService.createPost(post);
         PostResponseDto postResponseDto = postMapper.postToPostResponseDto(post);
 

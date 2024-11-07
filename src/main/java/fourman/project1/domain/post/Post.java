@@ -1,6 +1,6 @@
 package fourman.project1.domain.post;
 
-import fourman.project1.domain.test.Test;
+import fourman.project1.domain.traffic.Traffic;
 import fourman.project1.domain.user.User;
 import fourman.project1.domain.board.Board;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class Post {
 
     private Board board;
 
-    private Test test;
+    private Traffic test;
 
     private ZonedDateTime createdAt;
 

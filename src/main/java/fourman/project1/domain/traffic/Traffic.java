@@ -1,13 +1,12 @@
-package fourman.project1.domain.test;
+package fourman.project1.domain.traffic;
 
-import fourman.project1.domain.post.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor
-public class Test {
+public class Traffic {
 
     private Long testId;
 
@@ -19,8 +18,8 @@ public class Test {
 
     private int rps;
 
-    public static Test from(TestRequestDto testRequestDto) {
-        Test test = new Test();
+    public static Traffic from(TrafficRequestDto testRequestDto) {
+        Traffic test = new Traffic();
         test.setUrl(testRequestDto.getUrl());
         test.setVus(testRequestDto.getVus());
         test.setDuration(testRequestDto.getDuration());

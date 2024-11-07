@@ -3,7 +3,7 @@ package fourman.project1.controller.board;
 import fourman.project1.domain.board.Board;
 import fourman.project1.domain.board.BoardRequestDto;
 import fourman.project1.domain.board.BoardResponseDto;
-import fourman.project1.mapper.board.BoardMapper;
+import fourman.project1.domain.board.BoardMapper;
 import fourman.project1.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

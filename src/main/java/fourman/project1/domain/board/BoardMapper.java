@@ -1,8 +1,5 @@
-package fourman.project1.mapper.board;
+package fourman.project1.domain.board;
 
-import fourman.project1.domain.board.Board;
-import fourman.project1.domain.board.BoardRequestDto;
-import fourman.project1.domain.board.BoardResponseDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
