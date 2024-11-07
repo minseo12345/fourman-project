@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head">
+<head th:insert="~{fragments/header :: head}">
   <style>
     .container {
       display: flex;
@@ -13,41 +13,49 @@
 </head>
 <body>
 
-<div th:include="fragments/header :: header"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 
-<main>
+<main class="container-fluid">
   <!-- 페이지별 콘텐츠가 들어갈 자리 -->
-  <div class="container" style="text-align: center">
+  <section class="container" style="text-align: center">
     <h1 class="page-title" th:text="'Create New Test Post'">Welcome to FORMAN BY FOURMAN</h1>
     <p class="page-description" th:text="'Click the button below to create a new test post'"></p>
-    <a class="btn btn-dark">Create Post</a>
-  </div>
-
-  <section class="container">
-    <table border="1px solid black">
-      <thead>
-      <tr>
-        <th>게시판 번호</th>
-        <th>게시판 이름</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:if="${boards.isEmpty()}">
-        <td colspan="6">게시글이 없습니다.</td>
-      </tr>
-      <!--<tr th :each="user, iterStat : ${users}">
-                 <td th:text="${iterStat.index + 1}">1</td> -->
-      <tr th:each="board : ${boards}">
-        <td th:text="${board.boardId}">1</td>
-        <td><a th:href="@{/boards/{id}(id=${board.boardId})}" th:text="${board.boardname}">boardname</a></td>
-      </tr>
-      </tbody>
-    </table>
+    <a class="btn btn-dark" type="button" th:onclick="''">Create Post</a><br><br>
   </section>
+
+  <section class="row">
+    <section class="col-6 d-flex flex-column justify-content-center align-items-center text-start">
+      <h1 class="page-title" style="font-weight: bold">Existing Test Posts</h1>
+    </section>
+
+    <section class="col-6">
+      <table border="1px solid black">
+        <thead>
+        <tr>
+          <th>게시판 번호</th>
+          <th>게시판 이름</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${boards.isEmpty()}">
+          <td colspan="6">게시글이 없습니다.</td>
+        </tr>
+        <!--<tr th :each="user, iterStat : ${users}">
+                   <td th:text="${iterStat.index + 1}">1</td> -->
+        <tr th:each="board : ${boards}">
+          <td th:text="${board.boardId}">1</td>
+          <td><a th:href="@{/boards/{id}(id=${board.boardId})}" th:text="${board.boardname}">boardname</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+
 
 </main>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<div th:insert="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class testController {
     @GetMapping("/aaa")
     public String test() {
-        return "";
+        return "create-test";
+    }
+
+    @GetMapping("/bbb")
+    public String test1() {
+        return "detailed-test";
     }
 }
