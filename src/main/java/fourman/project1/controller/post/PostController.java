@@ -112,7 +112,7 @@ public class PostController {
         // PostResponseDto 로 매핑
         PostResponseDto postResponseDto = postMapper.postToPostResponseDto(post);
 
-//        model.addAttribute("post", postResponseDto);
+        // model.addAttribute("post", postResponseDto);
         return "redirect:/";
     }
 
