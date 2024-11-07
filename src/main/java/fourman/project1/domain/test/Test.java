@@ -21,11 +21,11 @@ public class Test {
 
     private Post post;
 
-    public static Test of(String url, int vus, String duration) {
+    public static Test from(TestRequestDto testRequestDto) {
         Test test = new Test();
-        test.setUrl(url);
-        test.setVus(vus);
-        test.setDuration(duration);
+        test.setUrl(testRequestDto.getUrl());
+        test.setVus(testRequestDto.getVus());
+        test.setDuration(testRequestDto.getDuration());
 
         return test;
     }

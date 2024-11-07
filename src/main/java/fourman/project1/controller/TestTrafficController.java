@@ -34,9 +34,8 @@ public class TestTrafficController {
 //        log.info("testRequestDto duration: {}", testRequestDto.getDuration());
 
         // testTrafficService.createTestTraffic(testMapper.testRequestDtoToTest(testRequestDto));
-        testTrafficService.createTestTraffic(Test.of(
-                testRequestDto.getUrl(),testRequestDto.getVus(),testRequestDto.getDuration()));
 
+        testTrafficService.createTestTraffic(Test.from(testRequestDto));
         model.addAttribute(
                 "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)
         );
