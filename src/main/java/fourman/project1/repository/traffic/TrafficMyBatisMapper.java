@@ -14,4 +14,6 @@ public interface TrafficMyBatisMapper {
     Optional<Traffic> findTrafficById(Long trafficId);
 
     void createTraffic(Traffic test);
+
+    void forceDeleteTrafficDueToError(Long trafficId);
 }

@@ -39,8 +39,13 @@ public class TrafficController {
         return "";
     }
 
-    @PostMapping
-    public String createTestTraffic(
+    @GetMapping("/create")
+    public String createTraffic() {
+        return "create-traffic";
+    }
+
+    @PostMapping("/create")
+    public String createTraffic(
             @ModelAttribute TrafficRequestDto trafficRequestDto,
             Model model) {
 

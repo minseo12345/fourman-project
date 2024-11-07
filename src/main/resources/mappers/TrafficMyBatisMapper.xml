@@ -31,4 +31,8 @@
             #{createdAt}, #{updatedAt}, #{deletedAt});
     </insert>
 
+    <delete id="forceDeleteTrafficDueToError">
+        DELETE FROM traffics WHERE traffic_id = #{trafficId}
+    </delete>
+
 </mapper>

@@ -33,6 +33,10 @@ public class TrafficServiceImpl implements TrafficService {
 
     @Override
     public void createTraffic(Traffic traffic) {
+        trafficMyBatisMapper.createTraffic(traffic);
+
+        String LOCAL_HOST_URL = "http://localhost:8080";
+        traffic.setUrl(LOCAL_HOST_URL + "/traffics/" + traffic.getTrafficId());
 
         String SCRIPT_PATH = "/Users/zun/Lecture/Elice/Cloud/project1/k6/script.js";
 
@@ -59,8 +63,8 @@ public class TrafficServiceImpl implements TrafficService {
                 throw new TrafficK6CmdErrorException("execution failed with exit code: " + exitCode);
             }
 
-            trafficMyBatisMapper.createTraffic(traffic);
         } catch (IOException | InterruptedException e) {
+            trafficMyBatisMapper.forceDeleteTrafficDueToError(traffic.getTrafficId());
             throw new TrafficK6CmdErrorException(e);
         }
     }
