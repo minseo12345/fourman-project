@@ -8,22 +8,20 @@
 <main class="container-fluid">
 
     <section class="row">
-        <section class="col">
-            <div class="justify-content-center">
-                <h1>Create New Post</h1>
-                <p>Enter the details below</p>
-            </div>
+        <section class="col-6 d-flex flex-column justify-content-center align-items-center text-start">
+            <h1 style="font-weight: bold">Create New Post</h1>
+            <p>Enter the details below</p>
         </section>
 
-        <section class="col">
+        <section class="col-6">
             <div>
                 <form method="post" th:action="@{/posts/create}">
                     <label>Service Title</label>
-                    <input class="form-control" type="text" name="title" placeholder="Enter title here">
+                    <input class="form-control mb-4" type="text" name="title" placeholder="Enter title here">
 
                     <label>Detailed Content</label>
-                    <textarea class="form-control" type="text" name="body" placeholder="Enter content here" rows="8"></textarea>
-                    <p>Add as much information as you`d like</p>
+                    <textarea class="form-control" type="text" name="body" placeholder="Enter content here" style="resize: none" rows="8"></textarea>
+                    <p class="mb-4">Add as much information as you`d like</p>
 
                     <button type="submit" class="btn btn-lg btn-dark">Submit</button>
                 </form>
