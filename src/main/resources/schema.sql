@@ -16,6 +16,20 @@ CREATE TABLE IF NOT EXISTS boards (
         boardname VARCHAR(30) NOT NULL
 );
 
+DROP TABLE IF EXISTS tests;
+CREATE TABLE tests (
+
+                       test_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       url        VARCHAR(200) NOT NULL,
+                       vus        BIGINT       NOT NULL,
+                       duration   VARCHAR(20)  NOT NULL,
+                       rps        BIGINT,
+                       post_id    BIGINT,
+                       FOREIGN KEY (post_id) REFERENCES posts (post_id) ON DELETE SET NULL
+);
+
+ALTER TABLE tests DROP FOREIGN KEY tests_ibfk_1;
+
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
 
@@ -29,16 +43,4 @@ CREATE TABLE posts (
         deleted_at TIMESTAMP DEFAULT NULL,
         FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE SET NULL,
         FOREIGN KEY (board_id) REFERENCES boards(board_id) ON DELETE SET NULL
-);
-
-DROP TABLE IF EXISTS tests;
-CREATE TABLE tests (
-
-        test_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
-        url        VARCHAR(200) NOT NULL,
-        vus        BIGINT       NOT NULL,
-        duration   VARCHAR(20)  NOT NULL,
-        rps        BIGINT,
-        post_id    BIGINT,
-        FOREIGN KEY (post_id) REFERENCES posts (post_id) ON DELETE SET NULL
 );
