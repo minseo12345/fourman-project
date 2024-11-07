@@ -1,10 +1,11 @@
 package fourman.project1.controller.user;
+import fourman.project1.mapper.mapstruct.UserMapper;
+
 import org.springframework.ui.Model;
 
 import fourman.project1.domain.user.User;
 import fourman.project1.dto.user.CheckUsernameRequestDto;
 import fourman.project1.dto.user.UserSignUpRequestDto;
-import fourman.project1.mapper.mapstruct.SignUpMapper;
 import fourman.project1.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,19 +15,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final SignUpMapper signUpMapper;
+    private final UserMapper userMapper;
 
     @GetMapping("/join")
     public String join(Model model) {
         model.addAttribute("userSignUpRequestDto", new UserSignUpRequestDto());
-        return "join";
+        return "/user/join";
     }
 
     // 회원가입
     @PostMapping("/join")
     public String signUp(@ModelAttribute UserSignUpRequestDto userSignUpRequestDto) {
-        User user = signUpMapper.toEntity(userSignUpRequestDto);
-//        System.out.println(user.getUsername());
+        User user = userMapper.toEntity(userSignUpRequestDto);
+
         userService.signUp(user);
         return "redirect:/login";
     }
@@ -41,6 +42,13 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("userSignUpRequestDto", new UserSignUpRequestDto());
-        return "login";
+        return "/user/login";
     }
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        return "home";
+    }
+
+
 }

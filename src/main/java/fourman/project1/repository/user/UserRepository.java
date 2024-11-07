@@ -2,9 +2,10 @@
 
     import fourman.project1.domain.user.User;
 
-    import jakarta.transaction.Transactional;
     import lombok.RequiredArgsConstructor;
     import org.springframework.stereotype.Repository;
+    import org.springframework.transaction.annotation.Transactional;
+
 
     @Repository
     @RequiredArgsConstructor
@@ -14,8 +15,12 @@
 
         @Transactional
         public void save(User user) {
-            System.out.println("rep"+ user.getUsername());
             userMybatisMapper.save(user);
+        }
+
+
+        public User findByUsername(String username) {
+            return userMybatisMapper.findByUsername(username);
         }
 
 
