@@ -9,12 +9,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-public class Board {
-    private Long boardId;
-
+//@Builder
+public class BoardRequestDto {
+    //private Long boardId;
     private String boardname;
-
     private List<Post> posts;
 }
-

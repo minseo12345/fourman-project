@@ -10,11 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class Board {
+public class BoardResponseDto {
     private Long boardId;
-
     private String boardname;
-
     private List<Post> posts;
 }
-
