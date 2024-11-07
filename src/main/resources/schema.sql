@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS tests;
 DROP TABLE IF EXISTS traffics;
 CREATE TABLE traffics (
 
-        test_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
+        traffic_id    BIGINT AUTO_INCREMENT PRIMARY KEY,
         url        VARCHAR(200) NOT NULL,
         vus        BIGINT       NOT NULL,
         duration   VARCHAR(20)  NOT NULL,

@@ -7,5 +7,7 @@ public interface TrafficMapper {
 
     Traffic trafficRequestDtoToTraffic(TrafficRequestDto trafficRequestDto);
 
+    TrafficResponseDto trafficToTrafficResponseDto(Traffic traffic);
+
     TrafficResponseDto trafficRequestDtoToTrafficResponseDto(TrafficRequestDto trafficRequestDto);
 }

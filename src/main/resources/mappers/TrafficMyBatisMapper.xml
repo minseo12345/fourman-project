@@ -11,6 +11,14 @@
         SELECT * FROM traffics WHERE deleted_at IS NULL;
     </select>
 
+    <select id="findTrafficById"
+            resultType="fourman.project1.domain.traffic.Traffic">
+
+            SELECT * FROM traffics
+            WHERE traffic_id = #{trafficId}
+            AND deleted_at IS NOT NULL;
+    </select>
+
     <insert id="createTraffic"
             parameterType="fourman.project1.domain.traffic.Traffic"
             keyProperty="trafficId" keyColumn="traffic_id"

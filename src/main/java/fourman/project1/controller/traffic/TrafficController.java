@@ -18,12 +18,20 @@ import org.springframework.web.bind.annotation.*;
 public class TrafficController {
 
     private final TrafficMapper trafficMapper;
-    private final TrafficService testTrafficService;
+    private final TrafficService trafficService;
 
     @GetMapping
     public String findTraffics(Model model) {
-        model.addAttribute("traffics", testTrafficService.findTraffics());
-        return "main-traffic";
+        model.addAttribute("traffics", trafficService.findTraffics());
+        return "";
+    }
+
+    @GetMapping("/{trafficId}")
+    public String findTrafficById(@PathVariable Long trafficId, Model model) {
+        model.addAttribute(
+                "traffic",
+                trafficMapper.trafficToTrafficResponseDto(trafficService.findTrafficById(trafficId)));
+        return "";
     }
 
     @PostMapping
@@ -31,7 +39,7 @@ public class TrafficController {
             @ModelAttribute TrafficRequestDto trafficRequestDto,
             Model model) {
 
-        testTrafficService.createTraffic(Traffic.from(trafficRequestDto));
+        trafficService.createTraffic(Traffic.from(trafficRequestDto));
         model.addAttribute(
                 "traffic",
                 trafficMapper.trafficRequestDtoToTrafficResponseDto(trafficRequestDto)
@@ -39,4 +47,6 @@ public class TrafficController {
 
         return "redirect:/traffics";
     }
+
+
 }
