@@ -2,28 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/header :: head}">
 
-    <style>
-        a{
-            margin-left: 100%;
-        }
-    </style>
+    <title>join</title>
+    <link rel="stylesheet" href="/css/join.css">
 </head>
-<body class="custom-page">
+<body class="join-page">
 
 <header th:insert="~{fragments/header :: header}"></header>
 
-<main>
-    <div class=>
+<main class="container">
+    <div class="left">
         <h1>Not a member yet?</h1>
         <p>Already a member? <a href="/login">Log in</a></p>
     </div>
 
-    <div class="a">
+    <div class="right">
         <form th:action="@{/join}" method="post" th:object="${userSignUpRequestDto}">
             <div>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username"  th:field="*{username}" placeholder="Enter username" required>
-                <button type="button" onclick="checkUsername()">Check Availability</button>
+
+                <div class="username-container">
+                    <input type="text" id="username" name="username" th:field="*{username}" placeholder="Enter username" required>
+                    <button type="button" onclick="checkUsername()">Check Availability</button>
+                </div>
                 <div id="usernameCheckResult"></div>
             </div>
 
@@ -37,6 +37,7 @@
             </div>
         </form>
     </div>
+    <hr>
 </main>
 
 <div th:insert="~{fragments/footer :: footer}"></div>
