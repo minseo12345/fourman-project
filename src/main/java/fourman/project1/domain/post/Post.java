@@ -1,5 +1,6 @@
 package fourman.project1.domain.post;
 
+import fourman.project1.domain.test.Test;
 import fourman.project1.domain.user.User;
 import fourman.project1.domain.board.Board;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,19 @@ public class Post {
 
     private Board board;
 
+    private Test test;
+
     private ZonedDateTime createdAt;
 
     private ZonedDateTime updatedAt;
 
     private ZonedDateTime deletedAt;
+
+    public static Post from(PostRequestDto postRequestDto) {
+        Post post = new Post();
+        post.title = postRequestDto.getTitle();
+        post.body = postRequestDto.getBody();
+
+        return post;
+    }
 }

@@ -20,8 +20,8 @@
     <insert id="createPost" useGeneratedKeys="true"
             parameterType="fourman.project1.domain.post.Post"
             keyProperty="postId" keyColumn="post_id">
-        INSERT INTO posts (title, body, user_id, board_id)
-        VALUES (#{title}, #{body}, #{user.userId}, #{board.boardId})
+        INSERT INTO posts (title, body, user_id, board_id, test_id)
+        VALUES (#{title}, #{body}, #{user.userId}, #{board.boardId}, #{test.testId})
     </insert>
     
     <update id="updatePost" parameterType="fourman.project1.domain.post.Post">

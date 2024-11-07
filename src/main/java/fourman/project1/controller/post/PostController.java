@@ -5,8 +5,12 @@ import fourman.project1.domain.post.Post;
 import fourman.project1.domain.post.PostMapper;
 import fourman.project1.domain.post.PostRequestDto;
 import fourman.project1.domain.post.PostResponseDto;
+import fourman.project1.domain.test.Test;
+import fourman.project1.domain.test.TestMapper;
+import fourman.project1.domain.test.TestRequestDto;
 import fourman.project1.domain.user.User;
 import fourman.project1.service.post.PostService;
+import fourman.project1.service.test.TestTrafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -24,6 +28,8 @@ public class PostController {
 
     private final PostService postService;
     private final PostMapper postMapper;
+    private final TestTrafficService testTrafficService;
+    private final TestMapper testMapper;
 
     @GetMapping
     public String findPosts(Model model) {
@@ -60,7 +66,9 @@ public class PostController {
     }
 
     @PostMapping("/create")
-    public String createPost(@ModelAttribute PostRequestDto postRequestDto, Model model, RedirectAttributes redirectAttributes) {
+    public String createPost(@ModelAttribute PostRequestDto postRequestDto,
+                             @ModelAttribute TestRequestDto testRequestDto,
+                             Model model, RedirectAttributes redirectAttributes) {
 //        log.info("createPost() {}, {}, {}, {}", postRequestDto.getTitle(), postRequestDto.getBody(), postRequestDto.getUserId(), postRequestDto.getBoardId());
 
         // User 찾기
@@ -68,7 +76,9 @@ public class PostController {
         // Board 찾기
         Board findBoard = new Board(); // boardService.findByBoardId();
 
-        Post post = postMapper.postRequestDtoToPost(postRequestDto);
+        Post post = Post.from(postRequestDto);
+        log.info("post title: {}", post.getTitle());
+
         post.setUser(findUser);
         post.setBoard(findBoard);
 
@@ -78,6 +88,11 @@ public class PostController {
         // PostResponseDto 로 매핑
         PostResponseDto postResponseDto = postMapper.postToPostResponseDto(post);
         log.info("createPost() postResponseDto ={} , {}, {}", post.getPostId(), post.getTitle(), post.getCreatedAt());
+
+        testTrafficService.createTestTraffic(Test.from(testRequestDto));
+        model.addAttribute(
+                "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)
+        );
 
 //        model.addAttribute("post", postResponseDto);
 //        redirectAttributes.addAttribute("post", postResponseDto);

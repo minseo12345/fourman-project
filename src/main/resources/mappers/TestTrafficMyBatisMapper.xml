@@ -10,8 +10,8 @@
             keyProperty="testId" keyColumn="test_id"
             useGeneratedKeys="true">
 
-        INSERT INTO tests (url, vus, duration, rps, post_id)
-        VALUES (#{url}, #{vus}, #{duration}, #{rps}, #{post.postId});
+        INSERT INTO tests (url, vus, duration, rps)
+        VALUES (#{url}, #{vus}, #{duration}, #{rps});
     </insert>
 
 </mapper>

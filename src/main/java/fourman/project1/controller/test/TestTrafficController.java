@@ -29,12 +29,6 @@ public class TestTrafficController {
             @ModelAttribute TestRequestDto testRequestDto,
             Model model) {
 
-//        log.info("testRequestDto url:{}", testRequestDto.getUrl());
-//        log.info("testRequestDto vus: {}", testRequestDto.getVus());
-//        log.info("testRequestDto duration: {}", testRequestDto.getDuration());
-
-        // testTrafficService.createTestTraffic(testMapper.testRequestDtoToTest(testRequestDto));
-
         testTrafficService.createTestTraffic(Test.from(testRequestDto));
         model.addAttribute(
                 "test", testMapper.testRequestDtoToTestResponseDto(testRequestDto)

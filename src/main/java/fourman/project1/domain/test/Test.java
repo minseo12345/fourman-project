@@ -19,8 +19,6 @@ public class Test {
 
     private int rps;
 
-    private Post post;
-
     public static Test from(TestRequestDto testRequestDto) {
         Test test = new Test();
         test.setUrl(testRequestDto.getUrl());
