@@ -7,17 +7,17 @@
 
 <main class="container-fluid" style="height: 80vh;">
     <div class="row h-50">
-        <!-- 위쪽 div -->
-        <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
-            <h1 th:text="${post.title}">Service Title</h1>
-            <p th:text="${post.body}">Content</p>
+        <!-- Post 내용 -->
+        <div class="container col-12 d-flex flex-column align-items-center text-center p-5 " >
+            <h1 th:text="${post.title}" style="font-weight: bold">Service Title</h1>
+            <p th:text="${post.body}">Service Body</p>
         </div>
     </div>
 
     <div class="row h-50">
-        <!-- 아래쪽 div -->
+        <!-- 신청 form -->
         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-            <h1>Submit Request</h1>
+            <h1 style="font-weight: bold">Submit Request</h1>
             <p>Fill out the form below to request the service</p>
             <form method="post" class="w-50">
                 <div class="row mb-3">
