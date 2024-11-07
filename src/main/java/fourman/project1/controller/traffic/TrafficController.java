@@ -5,7 +5,6 @@ import fourman.project1.domain.traffic.TrafficMapper;
 import fourman.project1.domain.traffic.TrafficRequestDto;
 import fourman.project1.domain.traffic.TrafficResponseDto;
 import fourman.project1.service.traffic.TrafficService;
-import jakarta.annotation.Priority;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

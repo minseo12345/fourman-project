@@ -1,7 +1,7 @@
 package fourman.project1.service.traffic;
 
 import fourman.project1.domain.traffic.Traffic;
-import fourman.project1.exception.traffic.TrafficErrorException;
+import fourman.project1.exception.traffic.TrafficK6CmdErrorException;
 import fourman.project1.exception.traffic.TrafficNotFoundException;
 import fourman.project1.repository.traffic.TrafficMyBatisMapper;
 import lombok.RequiredArgsConstructor;
@@ -56,13 +56,12 @@ public class TrafficServiceImpl implements TrafficService {
 
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                throw new TrafficErrorException("k6 command execution failed with exit code: " + exitCode);
+                throw new TrafficK6CmdErrorException("execution failed with exit code: " + exitCode);
             }
 
             trafficMyBatisMapper.createTraffic(traffic);
         } catch (IOException | InterruptedException e) {
-            log.error("Error executing k6 command", e);
-            throw new TrafficErrorException("k6 command execution failed", e);
+            throw new TrafficK6CmdErrorException(e);
         }
     }
 }
