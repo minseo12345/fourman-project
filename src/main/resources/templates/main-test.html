@@ -20,7 +20,7 @@
   <section class="container" style="text-align: center">
     <h1 class="page-title" th:text="'Create New Test Post'">Welcome to FORMAN BY FOURMAN</h1>
     <p class="page-description" th:text="'Click the button below to create a new test post'"></p>
-    <a class="btn btn-dark" type="button" th:onclick="''">Create Post</a><br><br>
+    <a class="btn btn-dark" type="button" th:onclick="''">Create Post</a><br><br><br>
   </section>
 
   <section class="row">
@@ -29,8 +29,8 @@
     </section>
 
     <section class="col-6">
-      <table border="1px solid black">
-        <thead>
+      <table class="table" style="width: 80%;">
+        <thead class="table-dark">
         <tr>
           <th>게시판 번호</th>
           <th>게시판 이름</th>
@@ -40,8 +40,6 @@
         <tr th:if="${boards.isEmpty()}">
           <td colspan="6">게시글이 없습니다.</td>
         </tr>
-        <!--<tr th :each="user, iterStat : ${users}">
-                   <td th:text="${iterStat.index + 1}">1</td> -->
         <tr th:each="board : ${boards}">
           <td th:text="${board.boardId}">1</td>
           <td><a th:href="@{/boards/{id}(id=${board.boardId})}" th:text="${board.boardname}">boardname</a></td>
