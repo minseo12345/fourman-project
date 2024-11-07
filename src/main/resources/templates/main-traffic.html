@@ -44,7 +44,7 @@
                    <td th:text="${iterStat.index + 1}">1</td> -->
         <tr th:each="traffic : ${traffics}">
           <td th:text="${traffic.trafficId}">traffic_id</td>
-          <td><a th:href="@{/traffics/{id}(id=${traffic.trafficId})}" th:text="${traffic.rps}">결과</a></td>
+          <td><a th:href="@{/traffics/{id}(id=${traffic.trafficId})}" th:text="${traffic.vus}"></a></td>
         </tr>
         </tbody>
       </table>

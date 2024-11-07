@@ -6,6 +6,7 @@ import fourman.project1.exception.traffic.TrafficNotFoundException;
 import fourman.project1.repository.traffic.TrafficMyBatisMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ public class TrafficServiceImpl implements TrafficService {
                     .orElseThrow(TrafficNotFoundException::new);
     }
 
+    @Async
     @Override
     public void createTraffic(Traffic traffic) {
         traffic.setDuration(traffic.getDuration() + "s");
