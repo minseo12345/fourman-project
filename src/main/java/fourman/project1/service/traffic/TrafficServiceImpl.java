@@ -33,6 +33,8 @@ public class TrafficServiceImpl implements TrafficService {
 
     @Override
     public void createTraffic(Traffic traffic) {
+        traffic.setDuration(traffic.getDuration() + "s");
+        log.info("traffic duration: {}", traffic.getDuration());
         trafficMyBatisMapper.createTraffic(traffic);
 
         String LOCAL_HOST_URL = "http://localhost:8080";
