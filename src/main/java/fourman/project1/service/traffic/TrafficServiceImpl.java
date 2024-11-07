@@ -10,16 +10,22 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TestTrafficServiceImpl implements TrafficService {
+public class TrafficServiceImpl implements TrafficService {
 
     private final TrafficMyBatisMapper testTrafficMyBatisMapper;
 
     @Override
-    public void createTestTraffic(Traffic test) {
+    public List<Traffic> findTraffics() {
+        return List.of();
+    }
+
+    @Override
+    public void createTraffic(Traffic test) {
 
         String SCRIPT_PATH = "/Users/zun/Lecture/Elice/Cloud/project1/k6/script.js";
 
@@ -43,10 +49,10 @@ public class TestTrafficServiceImpl implements TrafficService {
 
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                throw new TrafficErrorException("k6 command failed with exit code: " + exitCode);
+                throw new TrafficErrorException("k6 command execution failed with exit code: " + exitCode);
             }
 
-            testTrafficMyBatisMapper.createTestTraffic(test);
+            testTrafficMyBatisMapper.createTraffic(test);
         } catch (IOException | InterruptedException e) {
             log.error("Error executing k6 command", e);
             throw new TrafficErrorException("k6 command execution failed", e);

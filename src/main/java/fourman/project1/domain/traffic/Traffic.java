@@ -1,14 +1,18 @@
 package fourman.project1.domain.traffic;
 
+import fourman.project1.domain.board.Board;
+import fourman.project1.domain.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.ZonedDateTime;
 
 @Getter @Setter
 @NoArgsConstructor
 public class Traffic {
 
-    private Long testId;
+    private Long trafficId;
 
     private String url;
 
@@ -18,12 +22,24 @@ public class Traffic {
 
     private int rps;
 
-    public static Traffic from(TrafficRequestDto testRequestDto) {
-        Traffic test = new Traffic();
-        test.setUrl(testRequestDto.getUrl());
-        test.setVus(testRequestDto.getVus());
-        test.setDuration(testRequestDto.getDuration());
+    private User user;
 
-        return test;
+    private Board board;
+
+    private ZonedDateTime createdAt;
+
+    private ZonedDateTime updatedAt;
+
+    private ZonedDateTime deletedAt;
+
+    public static Traffic from(TrafficRequestDto testRequestDto) {
+        Traffic traffic = new Traffic();
+        traffic.setUrl(testRequestDto.getUrl());
+        traffic.setVus(testRequestDto.getVus());
+        traffic.setDuration(testRequestDto.getDuration());
+        traffic.setCreatedAt(ZonedDateTime.now());
+        traffic.setUpdatedAt(traffic.getCreatedAt());
+
+        return traffic;
     }
 }

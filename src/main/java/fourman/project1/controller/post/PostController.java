@@ -28,8 +28,6 @@ public class PostController {
 
     private final PostService postService;
     private final PostMapper postMapper;
-    private final TrafficService testTrafficService;
-    private final TrafficMapper testMapper;
 
     @GetMapping
     public String findPosts(Model model) {
@@ -71,11 +69,6 @@ public class PostController {
         Post post = Post.from(postRequestDto);
         post.setUser(findUser);
         post.setBoard(findBoard);
-
-        // Test 생성 및 할당
-        Traffic test = Traffic.from(testRequestDto);
-        testTrafficService.createTestTraffic(test);
-        post.setTest(test);
 
         // post 저장 및 응답
         postService.createPost(post);

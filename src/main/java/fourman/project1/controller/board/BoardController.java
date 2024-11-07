@@ -26,15 +26,13 @@ public class BoardController {
     public String findBoards(Model model) {
        List<Board> boards = boardService.findBoards();
        model.addAttribute("boards", boards);
-       log.info("findBoards {}", boards.size());
-       return "main-test";
+       return "main-traffic";
    }
 
    @GetMapping("/{boardId}")
     public String findBoardById(@PathVariable Long boardId, Model model) {
        Board findBoard = boardService.findBoardById(boardId);
        model.addAttribute("board", findBoard);
-       log.info("findBoardById {}", findBoard.getBoardId());
        return "";
    }
 
@@ -46,16 +44,13 @@ public class BoardController {
 
    @PostMapping("/create")
     public String createBoard(@ModelAttribute BoardRequestDto boardRequestDto, Model model) {
-      log.info("Create board: {} ### {}", boardRequestDto.getBoardname(), boardRequestDto.getPosts());
        // Request Dto를 Board 엔티티로 변환
        Board board = boardMapper.boardRequestDtoToBoard(boardRequestDto);
        // Board 객체 생성 (ID 자동 생성)
        boardService.createBoard(board);
-       log.info("1boardId : {}", board.getBoardId());
-       log.info("1boardname : {}", board.getBoardname());
+
        // 생성된 ID로 Board 다시 조회
        Board newBoard = boardService.findBoardById(board.getBoardId());
-       log.info("#######################++++++++++++++++++++ ");
        // 조회된 Board를 Response Dto로 변환
        BoardResponseDto boardResponseDto = boardMapper.boardToBoardResponseDto(newBoard);
        model.addAttribute("board", boardResponseDto);

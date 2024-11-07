@@ -26,8 +26,6 @@ public class Post {
 
     private Board board;
 
-    private Traffic test;
-
     private ZonedDateTime createdAt;
 
     private ZonedDateTime updatedAt;

@@ -5,13 +5,22 @@
 
 <mapper namespace="fourman.project1.repository.traffic.TrafficMyBatisMapper">
 
-    <insert id="createTestTraffic"
+    <select id="findTraffics"
+            resultType="fourman.project1.domain.traffic.Traffic">
+
+        SELECT * FROM traffics WHERE deleted_at IS NULL;
+    </select>
+
+    <insert id="createTraffic"
             parameterType="fourman.project1.domain.traffic.Traffic"
-            keyProperty="testId" keyColumn="test_id"
+            keyProperty="trafficId" keyColumn="traffic_id"
             useGeneratedKeys="true">
 
-        INSERT INTO tests (url, vus, duration, rps)
-        VALUES (#{url}, #{vus}, #{duration}, #{rps});
+        INSERT INTO traffics (
+            url, vus, duration, rps, user_id, board_id, created_at, updated_at, deleted_at)
+        VALUES (
+            #{url}, #{vus}, #{duration}, #{rps}, #{user.userId}, #{board.boardId},
+            #{createdAt}, #{updatedAt}, #{deletedAt});
     </insert>
 
 </mapper>

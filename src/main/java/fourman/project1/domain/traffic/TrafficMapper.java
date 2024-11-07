@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TrafficMapper {
 
-    Traffic testRequestDtoToTest(TrafficRequestDto testRequestDto);
+    Traffic trafficRequestDtoToTraffic(TrafficRequestDto trafficRequestDto);
 
-    TrafficResponseDto testRequestDtoToTestResponseDto(TrafficRequestDto testRequestDto);
+    TrafficResponseDto trafficRequestDtoToTrafficResponseDto(TrafficRequestDto trafficRequestDto);
 }
