@@ -28,7 +28,7 @@ public class TrafficController {
                                                 .map(trafficMapper::trafficToTrafficResponseDto)
                                                 .toList();
         model.addAttribute("traffics", traffics);
-        return "main-traffic";
+        return "traffics";
     }
 
     @GetMapping("/{trafficId}")

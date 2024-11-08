@@ -5,12 +5,9 @@ import fourman.project1.domain.post.Post;
 import fourman.project1.domain.post.PostMapper;
 import fourman.project1.domain.post.PostRequestDto;
 import fourman.project1.domain.post.PostResponseDto;
-import fourman.project1.domain.traffic.Traffic;
-import fourman.project1.domain.traffic.TrafficMapper;
 import fourman.project1.domain.traffic.TrafficRequestDto;
 import fourman.project1.domain.user.User;
 import fourman.project1.service.post.PostService;
-import fourman.project1.service.traffic.TrafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -37,7 +34,7 @@ public class PostController {
         log.info("find posts.size() ={}", posts.size());
 
         model.addAttribute("posts", posts);
-        return "main-service";
+        return "posts";
     }
 
     @GetMapping("/{postId}")
@@ -48,12 +45,12 @@ public class PostController {
         log.info("findPostById() findPost={}, {}", post.getTitle(), post.getBody());
 
         model.addAttribute("post", post);
-        return "detailed-service";
+        return "detailed-post";
     }
 
     @GetMapping("/create")
     public String createPost(Model model) {
-        return "create-service";
+        return "create-post";
     }
 
     @PostMapping("/create")
@@ -66,6 +63,7 @@ public class PostController {
         Board findBoard = new Board(); // boardService.findByBoardId();
 
         // Post 생성 및 할당
+        // postRequestDto -> post 매퍼가 에러가 나서 급한대로 static from 메서드 만든 거예요!
         Post post = Post.from(postRequestDto);
         post.setUser(findUser);
         post.setBoard(findBoard);

@@ -26,7 +26,7 @@ public class BoardController {
     public String findBoards(Model model) {
        List<Board> boards = boardService.findBoards();
        model.addAttribute("boards", boards);
-       return "main-traffic";
+       return "traffics";
    }
 
    @GetMapping("/{boardId}")
