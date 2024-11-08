@@ -33,9 +33,9 @@ public class TrafficController {
 
     @GetMapping("/{trafficId}")
     public String findTrafficById(@PathVariable Long trafficId, Model model) {
-        model.addAttribute(
-                "traffic",
-                trafficMapper.trafficToTrafficResponseDto(trafficService.findTrafficById(trafficId)));
+        model.addAttribute("traffic",
+                trafficMapper.trafficToTrafficResponseDto(trafficService.findTrafficById(trafficId))
+        );
         return "detailed-traffic";
     }
 
@@ -45,9 +45,7 @@ public class TrafficController {
     }
 
     @PostMapping("/create")
-    public String createTraffic(
-            @ModelAttribute TrafficRequestDto trafficRequestDto,
-            Model model) {
+    public String createTraffic(@ModelAttribute TrafficRequestDto trafficRequestDto, Model model) {
 
         trafficService.createTraffic(Traffic.from(trafficRequestDto));
         model.addAttribute(

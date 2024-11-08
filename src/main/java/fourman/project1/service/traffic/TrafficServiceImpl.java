@@ -38,7 +38,7 @@ public class TrafficServiceImpl implements TrafficService {
         traffic.setDuration(traffic.getDuration() + "s");
         trafficMyBatisMapper.createTraffic(traffic);
 
-        String LOCAL_HOST_URL = "http://localhost:8080";
+        String LOCAL_HOST_URL = "http://localhost:8080"; // @Value
         Long trafficId = traffic.getTrafficId();
         String trafficUrl = LOCAL_HOST_URL + "/traffics/" + trafficId;
 
@@ -49,15 +49,15 @@ public class TrafficServiceImpl implements TrafficService {
         String SCRIPT_PATH = "/Users/zun/Lecture/Elice/Cloud/project1/k6/script.js";
 
         try {
-            ProcessBuilder pb = new ProcessBuilder(
+            ProcessBuilder processBuilder = new ProcessBuilder(
                     "/opt/homebrew/bin/k6", "run",
                     "--vus", String.valueOf(traffic.getVus()),
                     "--duration", traffic.getDuration(),
                     "--env", "TARGET_URL=" + traffic.getUrl(),
                     SCRIPT_PATH
             );
-            pb.redirectErrorStream(true);
-            Process process = pb.start();
+            processBuilder.redirectErrorStream(true);
+            Process process = processBuilder.start();
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                 String line;
