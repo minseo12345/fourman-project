@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+// 통합 테스트 통과됨 - 도메인 통합 완료
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
