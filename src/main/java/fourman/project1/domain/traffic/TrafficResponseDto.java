@@ -8,6 +8,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TrafficResponseDto {
 
+    private Long trafficId;
+
     private int vus;
 
     private String duration;
