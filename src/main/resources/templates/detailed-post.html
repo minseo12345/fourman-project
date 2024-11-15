@@ -12,9 +12,9 @@
             <h1 th:text="${post.title}" style="font-weight: bold">Service Title</h1>
             <p th:text="${post.body}">Service Body</p>
             <div th:if="${post.user != null} and ${post.user.userId != null} and ${user.userId} == ${post.user.userId}">
-                <form th:action="@{/posts/{postId}(postId=${post.postId})}" method="post" th:object="${post}">
+                <form th:action="@{/posts/{postId}(postId=${post.postId})}" id="deleteForm" method="post" th:object="${post}">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-dark" type="submit">delete post</button>
+                    <button class="btn btn-dark" type="button" onclick="deleteConfirm()">delete post</button>
                 </form>
             </div>
         </div>
@@ -46,6 +46,14 @@
     <script>
         function fakeSubmit() {
             alert("Request submitted successfully!")
+        }
+
+        function deleteConfirm() {
+            var isDelete = confirm("Are you sure you want to delete this post?");
+
+            if (isDelete) {
+                document.getElementById("deleteForm").submit();
+            }
         }
     </script>
 </main>
